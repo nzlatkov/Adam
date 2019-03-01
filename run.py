@@ -5,17 +5,14 @@ import time
 import sys
 
 url = 'https://www.messenger.com'
-email = None
-password = None
-
-chat_id = None
 invoke = '!adam '
-answered_messages = []
 
 browser = webdriver.Chrome('chromedriver.exe')
 browser.get(url)
 
-def login():
+answered_messages = []
+
+def login(email, password):
 	email_box = browser.find_element_by_name('email')
 	password_box = browser.find_element_by_name('pass')
 	login_button = browser.find_element_by_name('login')
@@ -28,21 +25,18 @@ def login():
 	login_button.click()
 
 
-def connect_to_chat():
+def connect_to_chat(chat_id):
 	browser.get('https://www.messenger.com/t/' + chat_id)
 	time.sleep(4)
 
 
 def check_for_invoke():
-	messages = browser.find_elements_by_class_name('_58nk')
-	messages = [message.text for message in messages]
+	message = browser.find_elements_by_class_name('_58nk')[-1].text
 
-	for message in reversed(messages):
-		if message[:len(invoke)] == invoke and message[len(invoke):] not in answered_messages:
-			answered_messages.append(message[len(invoke):])
-			return message[len(invoke):]
-
-	return None
+	if message[:len(invoke)] == invoke:
+		return message[len(invoke):]
+	else:
+		return None
 
 
 def send_message(message):
@@ -52,14 +46,17 @@ def send_message(message):
 
 
 if __name__ == '__main__':
-	email = sys.argv[1]
-	password = sys.argv[2]
-	chat_id = sys.argv[3]
+	# email = sys.argv[1]
+	# password = sys.argv[2]
+	# chat_id = sys.argv[3]
+	email = 'adam_the_ai@abv.bg'
+	password = 'marakesh1999'
+	chat_id = '100008733464069'
 
 	while True:
 		try:
-			login()
-			connect_to_chat()
+			login(email, password)
+			connect_to_chat(chat_id)
 			break
 		except:
 			time.sleep(3)
