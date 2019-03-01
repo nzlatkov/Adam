@@ -2,8 +2,8 @@ import sqlite3
 import json
 from datetime import datetime
 
-timeframe = '2018-10'
-datadir = 'G:/ML/adam/chatbot_model/data/reddit_comments/' + timeframe
+timeframe = ''
+datadir = '' + timeframe
 
 start_row = 0
 
