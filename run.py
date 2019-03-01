@@ -8,6 +8,7 @@ url = 'https://www.messenger.com'
 email = ''
 password = ''
 
+chat_id = ''
 invoke = '!adam '
 answered_messages = []
 
@@ -27,8 +28,8 @@ def login():
 	login_button.click()
 
 
-def connect_to_chat(ID):
-	browser.get('https://www.messenger.com/t/' + ID)
+def connect_to_chat():
+	browser.get('https://www.messenger.com/t/' + chat_id)
 	time.sleep(4)
 
 
@@ -50,12 +51,10 @@ def send_message(message):
 	textbox.send_keys(Keys.ENTER)
 
 if __name__ == '__main__':
-  chat_id = ''
-
 	while True:
 		try:
 			login()
-			connect_to_chat(chat_id)
+			connect_to_chat()
 			break
 		except:
 			time.sleep(3)
