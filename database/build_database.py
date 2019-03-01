@@ -1,17 +1,18 @@
 import sqlite3
 import json
 from datetime import datetime
+import sys
 
-timeframe = ''
-datadir = '' + timeframe
+datadir = ''
+database_name = ''
 
 start_row = 0
 
 sql_transaction = []
 cleanup = 1000000
 
-connection = sqlite3.connect('{}.db'.format(timeframe))
-c = connection.cursor()
+connection = None
+c = None 
 
 def create_table():
     c.execute("CREATE TABLE IF NOT EXISTS parent_reply(parent_id TEXT PRIMARY KEY, comment_id TEXT UNIQUE, parent TEXT, comment TEXT, subreddit TEXT, unix INT, score INT)")
@@ -99,6 +100,12 @@ def clean():
     connection.commit()
 
 if __name__ == '__main__':
+    datadir = sys.argv[1]
+    database_name = sys.argv[2]
+
+    connection = sqlite3.connect('{}.db'.format(database_name))
+    c = connection.cursor()
+
     create_table()
     row_counter = 0
     paired_rows = 0
@@ -143,4 +150,3 @@ if __name__ == '__main__':
                     clean()
 
     clean()
-
