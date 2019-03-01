@@ -2,13 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
-from random import choice
+import sys
 
 url = 'https://www.messenger.com'
-email = ''
-password = ''
+email = None
+password = None
 
-chat_id = ''
+chat_id = None
 invoke = '!adam '
 answered_messages = []
 
@@ -50,7 +50,12 @@ def send_message(message):
 	textbox.send_keys(message)
 	textbox.send_keys(Keys.ENTER)
 
+
 if __name__ == '__main__':
+	email = sys.argv[1]
+	password = sys.argv[2]
+	chat_id = sys.argv[3]
+
 	while True:
 		try:
 			login()
