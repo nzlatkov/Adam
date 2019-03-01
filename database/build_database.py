@@ -3,13 +3,13 @@ import json
 from datetime import datetime
 import sys
 
-datadir = ''
-database_name = ''
-
 start_row = 0
+cleanup = 1000000
+
+datadir = None
+database_name = None
 
 sql_transaction = []
-cleanup = 1000000
 
 connection = None
 c = None 
@@ -150,3 +150,4 @@ if __name__ == '__main__':
                     clean()
 
     clean()
+
