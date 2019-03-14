@@ -46,12 +46,9 @@ def send_message(message):
 
 
 if __name__ == '__main__':
-	# email = sys.argv[1]
-	# password = sys.argv[2]
-	# chat_id = sys.argv[3]
-	email = 'adam_the_ai@abv.bg'
-	password = 'marakesh1999'
-	chat_id = '100008733464069'
+	email = sys.argv[1]
+	password = sys.argv[2]
+	chat_id = sys.argv[3]
 
 	while True:
 		try:
